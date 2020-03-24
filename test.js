@@ -24,16 +24,16 @@ hormBot.on("message", async msg => {
     let msgArray = msg.content.split(" ");
     let cmd = msgArray[0];
     let args = msgArray.slice(1);
-    // switch(cmd){
-    //     case `${prefix}hello`: return msg.channel.send(`Hello ${username}`); 
-    //     case `${prefix}big`: return msg.channel.send(`ไอควายบิ๊ก ไอหน้าหี`);
-    //     default: return msg.channel.send(`Command Not Found`);
+    switch(cmd){
+        case `${prefix}hello`: return msg.channel.send(`Hello ${username}`); 
+        case `${prefix}big`: return msg.channel.send(`ไอควายบิ๊ก ไอหน้าหี`);
+        default: return msg.channel.send(`Command Not Found`);
+    }
+    // if(cmd === `${prefix}hello`){
+    //     return msg.channel.send(`Hello ${username}`);
     // }
-    if(cmd === `${prefix}hello`){
-        return msg.channel.send(`Hello ${username}`);
-    }
-    if(cmd === `${prefix}big`){
-        return msg.channel.send(`ไอควายบิ๊ก ไอหน้าหี`);
-    }
+    // if(cmd === `${prefix}big`){
+    //     return msg.channel.send(`ไอควายบิ๊ก ไอหน้าหี`);
+    // }
 });
 hormBot.login(botconfig.token).catch((err) => console.log('err', err));
