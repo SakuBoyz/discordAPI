@@ -1,0 +1,17 @@
+{
+  "name": "DiscordAPI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "moment": "^2.24.0",
+    "mssql": "^6.2.0"
+  }
+}
