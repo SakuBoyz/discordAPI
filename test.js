@@ -1,8 +1,13 @@
+const express = require('express');
+const app = express();
 const discord = require('discord.js');
-const botconfig = require('./botconfig.json')
+const botconfig = require('./botconfig.json');
 const hormBot = new discord.Client({disableEveryone: true});
 const moment = require('moment');
-// const sql = require('mssql');
+const logger = require('./util/logger.js');
+const cors = require('cors')
+const port = 8080;
+  // const sql = require('mssql');
 // const config = {
 //     user: 'sa',
 //     password: 'P@d0rU123',
@@ -12,6 +17,7 @@ const moment = require('moment');
 // // connect to your database
 // var err = sql.connect(config)
 // if (err) console.log(err);
+app.use(cors({ origin: '*' }));
 hormBot.on('ready', async () => {
     console.log(`${hormBot.user.username} is online!!!`);
 });
@@ -37,3 +43,45 @@ hormBot.on("message", async msg => {
     // }
 });
 hormBot.login(botconfig.token).catch((err) => console.log('err', err));
+
+var server = app.listen(port, '0.0.0.0', () => {
+    logger.info('Start server at port ' + port);
+    //res notify to discord server
+    var eventNotify = {
+        message: `API Server Online at port ${port}`
+    }
+    discordNotify(eventNotify);
+    
+    //LINE NOTIFICATION
+    process.on('SIGINT', () => {
+        server.close(() => {
+            //res notify to discord server
+            var eventNotify = {
+                message: "💥API Server Shutting Down!!! ",
+            }
+            discordNotify(eventNotify);
+            console.log('Process terminated')
+        })
+    })
+
+
+    process.on('SIGTERM', () => {
+        server.close(() => {
+            //res notify to discord server
+            var eventNotify = {
+                message: "API Server Shutting Down!!! ",
+            }
+            discordNotify(eventNotify);
+            console.log('Process terminated')
+        })
+    })
+})
+
+//discord notify event
+function discordNotify(eventNotify) {
+    console.log('Discord notify to Team develop');
+    hormBot.on("message", async msg => {
+        return msg.channel.send(eventNotify);
+    })
+}
+
