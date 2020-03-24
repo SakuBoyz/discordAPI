@@ -6,6 +6,7 @@
 https://discordapp.com/oauth2/authorize?&client_id=<CLIENTID>&scope=bot&permissions=0 \
 and invite bot to your discord server   
 
+    3) $ npm intall discord.js
 # RUN
     1) node test.js
     2) type "!hello" or "!big"(recommend) in discord text channel
