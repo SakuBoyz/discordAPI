@@ -1,3 +1,5 @@
+# Objective
+This is my tutorial for discord bot API  
 # SET-UP
     1) create application and bot
  https://discordapp.com/developers/applications 
